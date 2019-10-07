@@ -2,13 +2,13 @@ import numpy as np
 import cv2
 
 cap = cv2.VideoCapture('calle1.mp4')
-# parametros para detección de esquinas ShiTomasi
+# parametros para deteccion de esquinas ShiTomasi
 feature_params = dict( maxCorners = 100,
                        qualityLevel = 0.3,
                        minDistance = 7,
                        blockSize = 7 )
 
-# Parámetros para el flujo óptico de Lucas Kanade
+# Parametros para el flujo optico de Lucas Kanade
 lk_params = dict( winSize = (15,15),
                   maxLevel = 2,
                   criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
@@ -16,12 +16,12 @@ lk_params = dict( winSize = (15,15),
 # Crea algunos colores aleatorios
 color = np.random.randint(0,255,(100,3))
 
-# Toma el primer cuadro y encuentra esquinas en él
+# Toma el primer cuadro y encuentra esquinas en el
 ret, old_frame = cap.read()
 old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
 p0 = cv2.goodFeaturesToTrack(old_gray, mask = None, **feature_params)
 
-# Crear una máscara de imagen para dibujar
+# Crear una mascara de imagen para dibujar
 mask = np.zeros_like(old_frame)
 while(1):
   ret,frame = cap.read()
